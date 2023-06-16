@@ -27,9 +27,6 @@ vim.opt.scrolloff = 8
 vim.g.mapleader = ' '
 vim.api.nvim_set_option("clipboard","unnamed")
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local key_mapper = function(mode, key, result)
   vim.api.nvim_set_keymap(
     mode,
@@ -92,6 +89,7 @@ packer.startup(function()
       'nvim-tree/nvim-web-devicons', -- optional
     },
   }
+  use 'vim-test/vim-test'
   end
 )
 
@@ -174,3 +172,11 @@ cmp.setup({
 
 -- setup nvim-tree
 require("nvim-tree").setup()
+
+key_mapper('n', '<leader>e', ':NvimTreeClose<CR>', { noremap = true, silent = true })
+key_mapper('n', '<leader>e', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
+
+key_mapper('n', '<leader>t', ':TestNearest<CR>') 
+key_mapper('n', '<leader>T', ':TestFile<CR>') 
+key_mapper('n', '<leader>a', ':TestSuite<CR>') 
+
